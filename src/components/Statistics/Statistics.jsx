@@ -1,16 +1,20 @@
-const options = ['good', 'bad', 'neutral'];
+import css from './Statistics.module.css';
 
 const Statistics = args => {
-  const { total, positivePercentage } = args;
+  const { total, positivePercentage, options } = args;
   return (
-    <ul className="stats">
+    <ul className={css.stats}>
       {options.map(option => (
-        <li className="statOption" key={option}>
-          {option} :{args[option]}
+        <li className={css.stats__option} key={option}>
+          {option} : {args[option]}
         </li>
       ))}
-      {total !== 0 ? <li>Total: {total}</li> : undefined}
-      <li>PositiveFeedBack: {positivePercentage}</li>
+      {total !== 0 ? (
+        <li className={css.stats__option}>Total: {total}</li>
+      ) : undefined}
+      <li className={css.stats__option}>
+        PositiveFeedBack: {positivePercentage}
+      </li>
     </ul>
   );
 };

@@ -1,6 +1,6 @@
 import { Component } from 'react';
 import Statistics from './Statistics/Statistics';
-import FeedbackOptions from './FeedbackOptions/FeedbackOptions ';
+import FeedbackOptions from './FeedbackOptions/FeedbackOptions';
 import Section from './Section/Section';
 import Notification from './Notification/Notification';
 
@@ -25,7 +25,8 @@ export class App extends Component {
     const { good, bad, neutral } = this.state;
     if (bad + neutral + good === 0) return null;
     if (bad + neutral === 0) return '100%';
-    return ((this.state['good'] / sum) * 100).toFixed(2) + '%';
+    // return ((this.state['good'] / sum) * 100).toFixed(2) + '%';
+    return Math.floor((this.state['good'] / sum) * 10000) / 100 + '%';
   };
 
   render() {
@@ -46,6 +47,7 @@ export class App extends Component {
         <Section title="Statistics">
           {positivePercentage ? (
             <Statistics
+              options={options}
               good={good}
               bad={bad}
               neutral={neutral}
